@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multitool-deployment
+  namespace: testapp
+  labels:
+    app: multitool
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: multitool
+  template:
+    metadata:
+      labels:
+        app: multitool
+    spec:
+      containers:
+      - name: multitool
+        image: praqma/network-multitool:latest
+        #image: us-central1-docker.pkg.dev/aerobic-form-336019/aerobic-form-336019-registry/multitool:0.1
+        ports:
+        - containerPort: 8081
